@@ -7,9 +7,6 @@ angular.module('TimerApp', []).
     }
   });
 
-
-
-
 function TimeCtrl($scope) {
 	$scope.running= false;
 	$scope.current_index = 0; // at what speech is it now?
@@ -90,6 +87,13 @@ function TimeCtrl($scope) {
 	};
 
 	$scope.NextSpeaker = function () {
+		if ($scope.current_index < $scope.speeches.length-1) { 
+			$scope.current_index++;
+		}
+		else {
+			$scope.current_index = 0;
+		};
+		$scope.prepare_speaker();
 	};
 
 
