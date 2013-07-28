@@ -9,7 +9,7 @@ filter('digits', function() {
 
 function TimeCtrl($scope) {
 	$scope.current_index = 0; // at what speech is it now?
-
+	$scope.pink_active = false;
 	$scope.speeches = [
 	{
 		'speaker': '1st Prop',
@@ -134,6 +134,11 @@ function TimeCtrl($scope) {
 			];
 
 
+	$scope.go_pink = function () { 
+		$scope.pink_active = true;
+	};
+
+
 	$scope.prepare_speaker = function () { // this function sets data for current speaker
 		$scope.running = false;
 		$scope.current_speech = $scope.speeches[$scope.current_index];
@@ -189,7 +194,7 @@ function TimeCtrl($scope) {
 		};
 
 		$scope.current_speech.real_length = Math.floor($scope.current_speech.speech_length - $scope.time_left);
-		
+
 		$scope.current_speech.real_length_m = Math.floor($scope.current_speech.real_length/60);
 		$scope.current_speech.real_length_s = Math.floor($scope.current_speech.real_length%60);
 
