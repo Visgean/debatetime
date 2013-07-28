@@ -134,8 +134,15 @@ function TimeCtrl($scope) {
 			];
 
 
-	$scope.go_pink = function () { 
-		$scope.pink_active = true;
+	$scope.go_pink = function () { //this cannot use angular as controller is activated after body tag
+		$scope.pink_active = !$scope.pink_active;
+		if ($scope.pink_active) {
+			$('body').css({ "background-color": ''});
+		}
+		else {
+			$('body').css({ "background-color": 'pink'});
+		};
+		
 	};
 
 
@@ -155,9 +162,10 @@ function TimeCtrl($scope) {
 			var now = new Date().getTime()/1000;
 			
 
-			if ($scope.end_timestamp<now) { // uz jsme v minusu
+			if ($scope.end_timestamp<=now) { // uz jsme v minusu
 				$scope.progress = 100;
 				diff = now - $scope.end_timestamp;
+				$scope.time_left = -diff; // time left musi byt negativni - jinak se bude spatne delat soucet
 			}
 			else {
 				diff = $scope.end_timestamp - now;
@@ -177,7 +185,7 @@ function TimeCtrl($scope) {
 			var now = new Date().getTime()/1000;
 			$scope.end_timestamp = now + $scope.time_left;
 			$scope.running = true;
-			$scope.timer = setInterval($scope.time_updater, 1000);
+			$scope.timer = setInterval($scope.time_updater, 500);
 		}
 		else {
 			clearInterval($scope.timer);
