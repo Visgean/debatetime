@@ -42,7 +42,7 @@ function TimeCtrl($scope) {
 				]
 			},
 			{
-				'speaker': '2st Prop',
+				'speaker': '2nd Prop',
 				'speech_length': 8*60,
 			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
 			'events': [
@@ -57,7 +57,7 @@ function TimeCtrl($scope) {
 				]
 			},
 			{
-				'speaker': '2st Opp',
+				'speaker': '2nd Opp',
 				'speech_length': 8*60,
 			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
 			'events': [
