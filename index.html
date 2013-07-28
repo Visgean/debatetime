@@ -41,7 +41,7 @@
 			<div class="large-4 columns hide-for-small">
 				<h6>Speakers</h6>
 				<ul class="no-bullet">
-					<li ng-repeat="speech in speeches">{{speech.speaker}}</li>
+					<li ng-repeat="speech in speeches">{{speech.speaker}}: {{speech.length/60}}m</li>
 				</ul>
 			</div>
 
@@ -49,7 +49,7 @@
 				<div class="large-5 large-centered columns"><h3>First Affirmative Speaker</h3></div>
 				<div class="large-3 large-centered columns">
 					<h1 id='timeholder'>8:00</h1>
-					<a href="#" class="large button expand alert">Pause</a><br>
+					<a href="#" class="large button expand" ng-class="{true:'alert', false:'success'}[running]"><span ng-show="running">Pause</span><span ng-hide="running">Start</span></a><br>
 					<a href="#" class="large button expand">Next Speaker</a>
 				</div>
 			</div>
