@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" ng-app> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" ng-app='TimerApp'> <!--<![endif]-->
 
 <head>
 	<meta charset="utf-8">
@@ -14,7 +14,7 @@
 	<script src="js/vendor/custom.modernizr.js"></script>
 
 </head>
-<body ng-controller="TimeCtrl">
+<body ng-controller="TimeCtrl" >
 	<nav class="top-bar">
 		<ul class="title-area">
 			<!-- Title Area -->
@@ -38,19 +38,19 @@
 
 
 		<div class="row">
-			<div class="large-4 columns hide-for-small">
+			<div class="large-3 columns hide-for-small">
 				<h6>Speakers</h6>
 				<ul class="no-bullet">
-					<li ng-repeat="speech in speeches">{{speech.speaker}}: {{speech.length/60}}m</li>
+					<li ng-repeat="speech in speeches">{{speech.speaker}}: {{speech.speech_length/60}}m</li>
 				</ul>
 			</div>
 
 			<div style='text-align: center;'>
-				<div class="large-5 large-centered columns"><h3>First Affirmative Speaker</h3></div>
+				<div class="large-5 large-centered columns"><h3>{{current_speech.speaker}}</h3></div>
 				<div class="large-3 large-centered columns">
-					<h1 id='timeholder'>8:00</h1>
-					<a href="#" class="large button expand" ng-class="{true:'alert', false:'success'}[running]"><span ng-show="running">Pause</span><span ng-hide="running">Start</span></a><br>
-					<a href="#" class="large button expand">Next Speaker</a>
+					<h1 id='timeholder'>{{time_left_m }}:{{time_left_s|digits }}</h1>
+					<a ng-click="Pause();" class="large button expand" ng-class="{true:'alert', false:'success'}[running]"><span ng-show="running">Pause</span><span ng-hide="running">Start</span></a><br>
+					<a ng-click="NextSpeaker();" class="large button expand">Next Speaker</a>
 				</div>
 			</div>
 		</div>
