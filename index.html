@@ -46,7 +46,7 @@
 
 
 		<div class="row">
-			<div class="large-3 columns hide-for-small">
+			<div class="small-2 large-4 columns hide-for-small">
 				<table>
 					<thead>
 						<tr>
@@ -61,22 +61,48 @@
 								<strong ng-show="$index==current_index">{{speech.speaker}}</strong>
 								<span ng-hide="$index==current_index">{{speech.speaker}}</span>
 							</td>
-								<td>{{speech.speech_length/60}}m</td>
-								<td><span ng-show="$index<current_index">{{speech.real_length_m}}m {{speech.real_length_s}}s</span></td>
+							<td>
+								{{speech.speech_length/60}}m
+							</td>
+							<td>
+								<span ng-show="$index<current_index">{{speech.real_length_m}}m {{speech.real_length_s}}s</span>
+							</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 
-				<div style='text-align: center;'>
-					<div class="large-5 large-centered columns"><h3>{{current_speech.speaker}}</h3></div>
-					<div class="large-3 large-centered columns">
+					<div class="large-4 large-4 columns" style='text-align: center;'>
+						<h3>{{current_speech.speaker}}</h3>
 						<h1 id='timeholder'>{{time_left_m }}:{{time_left_s|digits }}</h1>
 						<div class="progress success"><span class="meter" style="width: {{progress}}%"></span></div>
 						<a ng-click="Pause();" class="large button expand" ng-class="{true:'alert', false:'success'}[running]"><span ng-show="running">Pause</span><span ng-hide="running">Start</span></a><br>
 						<a ng-click="NextSpeaker();" class="large button expand">Next Speaker</a>
 					</div>
-				</div>
+
+
+				<div class="large-3 columns">
+					<table>
+						<thead>
+							<tr>
+								<th>Event</th>
+								<th>time</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="event in current_speech.events">
+								<td>
+									<span >{{event.name}}</span>
+								</td>
+								<td>
+									{{(time_left - event.time_from_end)|digits}}
+								</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+
 			</div>
 
 
