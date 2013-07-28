@@ -135,13 +135,13 @@ function TimeCtrl($scope) {
 
 
 	$scope.go_pink = function () { //this cannot use angular as controller is activated after body tag
-		$scope.pink_active = !$scope.pink_active;
 		if ($scope.pink_active) {
 			$('body').css({ "background-color": ''});
 		}
 		else {
 			$('body').css({ "background-color": 'pink'});
 		};
+		$scope.pink_active = !$scope.pink_active;
 		
 	};
 
