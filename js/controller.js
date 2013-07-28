@@ -11,127 +11,39 @@ function TimeCtrl($scope) {
 	$scope.current_index = 0; // at what speech is it now?
 	$scope.pink_active = false;
 	$scope.speeches = [
-	{
-		'speaker': '1st Prop',
-		'speech_length': 8*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events' :[
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_start': 60, // when this event happends after start?
-				},
-				{
-					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_start': 7*60, // when this event happends after start?
-				}
-				]
-			},
-			{
-				'speaker': '1st Opp',
-				'speech_length': 8*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_start': 60, // when this event happends after start?
-				},
-				{
-					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_start': 7*60, // when this event happends after start?
-				}
-				]
-			},
-			{
-				'speaker': '2nd Prop',
-				'speech_length': 8*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_start': 60, // when this event happends after start?
-				},
-				{
-					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_start': 7*60, // when this event happends after start?
-				}
-				]
-			},
-			{
-				'speaker': '2nd Opp',
-				'speech_length': 8*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_start': 60, // when this event happends after start?
-				},
-				{
-					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_start': 7*60, // when this event happends after start?
-				}
-				]
-			},
-			{
-				'speaker': '3rd Prop',
-				'speech_length': 8*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_start': 60, // when this event happends after start?
-				},
-				{
-					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_start': 7*60, // when this event happends after start?
-				}
-				]
-			},
-			{
-				'speaker': '3rd Opp',
-				'speech_length': 8*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_start': 60, // when this event happends after start?
-				},
-				{
-					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_start': 7*60, // when this event happends after start?
-				}
-				]
-			},
-			{
-				'speaker': 'Reply Prop',
-				'speech_length': 5*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_start': 60, // when this event happends after start?
-				},
-				{
-					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_start': 7*60, // when this event happends after start?
-				}
-				]
-			},
-			{
-				'speaker': 'Reply Opp',
-				'speech_length': 5*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_start': 60, // when this event happends after start?
-				},
-				{
-					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_start': 7*60, // when this event happends after start?
-				}
-				]
-			},
-			];
+		{
+			'speaker': '1st Prop',
+			'speech_length': 8*60,
+		},
+		{
+			'speaker': '1st Opp',
+			'speech_length': 8*60,
+		},
+		{
+			'speaker': '2nd Prop',
+			'speech_length': 8*60,
+		},
+		{
+			'speaker': '2nd Opp',
+			'speech_length': 8*60,
+		},
+		{
+			'speaker': '3rd Prop',
+			'speech_length': 8*60,
+		},
+		{
+			'speaker': '3rd Opp',
+			'speech_length': 8*60,
+		},
+		{
+			'speaker': 'Reply Prop',
+			'speech_length': 5*60,
+		},
+		{
+			'speaker': 'Reply Opp',
+			'speech_length': 5*60,
+		},
+	];
 
 
 	$scope.go_pink = function () { //this cannot use angular as controller is activated after body tag
