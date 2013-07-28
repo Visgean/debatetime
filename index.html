@@ -39,38 +39,54 @@
 
 		<div class="row">
 			<div class="large-3 columns hide-for-small">
-				<h6>Speakers</h6>
-				<ul class="no-bullet">
-					<li ng-repeat="speech in speeches">{{speech.speaker}}: {{speech.speech_length/60}}m</li>
-				</ul>
-			</div>
+				<table>
+					<thead>
+						<tr>
+							<th>Speaker</th>
+							<th>Time</th>
+							<th>Length</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="speech in speeches">
+							<td>
+								<strong ng-show="$index==current_index">{{speech.speaker}}</strong>
+								<span ng-hide="$index==current_index">{{speech.speaker}}</span>
+							</td>
+								<td>{{speech.speech_length/60}}m</td>
+								<td><span ng-show="$index<current_index">{{speech.real_length_m}}m {{speech.real_length_s}}s</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-			<div style='text-align: center;'>
-				<div class="large-5 large-centered columns"><h3>{{current_speech.speaker}}</h3></div>
-				<div class="large-3 large-centered columns">
-					<h1 id='timeholder'>{{time_left_m }}:{{time_left_s|digits }}</h1>
-					<a ng-click="Pause();" class="large button expand" ng-class="{true:'alert', false:'success'}[running]"><span ng-show="running">Pause</span><span ng-hide="running">Start</span></a><br>
-					<a ng-click="NextSpeaker();" class="large button expand">Next Speaker</a>
+				<div style='text-align: center;'>
+					<div class="large-5 large-centered columns"><h3>{{current_speech.speaker}}</h3></div>
+					<div class="large-3 large-centered columns">
+						<h1 id='timeholder'>{{time_left_m }}:{{time_left_s|digits }}</h1>
+						<div class="progress success"><span class="meter" style="width: {{progress}}%"></span></div>
+						<a ng-click="Pause();" class="large button expand" ng-class="{true:'alert', false:'success'}[running]"><span ng-show="running">Pause</span><span ng-hide="running">Start</span></a><br>
+						<a ng-click="NextSpeaker();" class="large button expand">Next Speaker</a>
+					</div>
 				</div>
 			</div>
-		</div>
 
 
 
 
 
-		<script>
-		document.write('<script src=' +
-			('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
-			'.js><\/script>')
-		</script>
+			<script>
+			document.write('<script src=' +
+				('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+				'.js><\/script>')
+			</script>
 
-		<script src="js/foundation.min.js"></script>
-		<script src="js/angular.min.js"></script>
-		<script src="js/controller.js"></script>
+			<script src="js/foundation.min.js"></script>
+			<script src="js/angular.min.js"></script>
+			<script src="js/controller.js"></script>
 
-		<script>
-		$(document).foundation();
-		</script>
-	</body>
-	</html>
+			<script>
+			$(document).foundation();
+			</script>
+		</body>
+		</html>
