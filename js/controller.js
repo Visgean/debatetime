@@ -190,19 +190,18 @@ function TimeCtrl($scope) {
 	};
 
 	$scope.NextSpeaker = function () {
+		$scope.current_speech.real_length = Math.floor($scope.current_speech.speech_length - $scope.time_left);
+		$scope.current_speech.real_length_m = Math.floor($scope.current_speech.real_length/60);
+		$scope.current_speech.real_length_s = Math.floor($scope.current_speech.real_length%60);
+		
 		if ($scope.current_index < $scope.speeches.length-1) { 
 			$scope.current_index++;
+			$scope.prepare_speaker();
 		}
 		else {
 			$('#final_modal').foundation('reveal', 'open');
 		};
 
-		$scope.current_speech.real_length = Math.floor($scope.current_speech.speech_length - $scope.time_left);
-
-		$scope.current_speech.real_length_m = Math.floor($scope.current_speech.real_length/60);
-		$scope.current_speech.real_length_s = Math.floor($scope.current_speech.real_length%60);
-
-		$scope.prepare_speaker();
 	};
 
 	$scope.CloseFinalModal = function () {
