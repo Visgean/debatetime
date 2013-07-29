@@ -1,98 +1,161 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" ng-app='TimerApp'> <!--<![endif]-->
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <title>Debatetime by Visgean</title>
-  </head>
-
-  <body>
-    <a id="forkme_banner" href="https://github.com/Visgean/debatetime">View on GitHub</a>
-    <div class="shell">
-
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Debatetime</h1>
-            <h2>Application for time keeping at debates</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
-
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/Visgean/debatetime/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/Visgean/debatetime/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>HoE timekeeper</title>
 
 
-      <span class="banner-fix"></span>
+	<link rel="stylesheet" href="css/foundation.css">
+	<!-- <link rel="stylesheet" href="css/icons.css"> -->
+
+	<script src="js/vendor/custom.modernizr.js"></script>
+
+</head>
+<body ng-controller="TimeCtrl" style="background-color: {{bg_color}};">
+	<nav class="top-bar">
+		<ul class="title-area">
+			<!-- Title Area -->
+			<li class="name">
+				<h1><a href="#">HoE timekeeper </a></h1>
+			</li>
+			<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+			<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+		</ul>
+
+		<section class="top-bar-section">
+			<ul class="left">
+
+				<li class="divider hide-for-small"></li>
+				<li class="hide-for-small"><a href="http://www.heart-of-europe.org/web/" target='_tab'>website</a></li>
+				<li class="divider hide-for-small"></li>
+				<li class="hide-for-small"><a href="https://twitter.com/HeartofEuropeDT" target='_tab'>twitter</a></li>
+			</ul>
+			<ul class="right">
+				<li class="has-dropdown"><a href="#">Barvicky</a>
+			      	<ul class="dropdown">
+			      		<li><a ng-click="go_pink('pink')">Pink</a></li>
+	      				<li><a ng-click="go_pink('brown')">Brown</a></li>
+	      				<li><a ng-click="go_pink('black')">Black</a></li>
+	      				<li><a ng-click="go_pink('white')">White</a></li>
+	      			</ul>
+	      		</li>
+				<li class="divider hide-for-small"></li>
+				<li><a href="https://github.com/Visgean/debatetime" target='_tab'>Source @ github</a></li>
+				<li class="divider hide-for-small"></li>
+				<li><a href="http://www.sphaera.cz/" target='_tab'>Created by Sphaera</a></li>
+			</ul>
+		</section></nav>
 
 
-      <section id="main_content">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+		<div class="row">
+			<div class="small-2 large-4 columns hide-for-small">
+				<table>
+					<thead>
+						<tr>
+							<th>Speaker</th>
+							<th>Time</th>
+							<th>Length</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="speech in speeches">
+							<td>
+								<strong ng-show="$index==current_index">{{speech.speaker}}</strong>
+								<span ng-hide="$index==current_index">{{speech.speaker}}</span>
+							</td>
+							<td>
+								{{speech.speech_length/60}}m
+							</td>
+							<td>
+								<span ng-show="$index<current_index">{{speech.real_length_m}}m {{speech.real_length_s}}s</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+			<div class="large-4 large-4 columns" style='text-align: center;'>
+				<h3>{{current_speech.speaker_full}}</h3>
+				<h1 id='timeholder' style='font-size:66px;'>{{time_left_m }}:{{time_left_s|digits }}</h1>
+				<div class="progress success"><span class="meter" style="width: {{progress}}%"></span></div>
+				<a ng-click="Pause();" class="large button expand" ng-class="{true:'alert', false:'success'}[running]"><span ng-show="running">Pause</span><span ng-hide="running">Continue</span></a><br>
+				<a ng-click="NextSpeaker();" class="large button expand">Next Speaker</a>
+			</div>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+			<div class="large-3 columns">
+				<table>
+					<thead>
+						<tr>
+							<th>Event</th>
+							<th width="800"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="event in current_speech.events" ng-show="(time_left - event.time_from_end)>0">
+							<td>
+								<span >{{event.name}}</span>
+							</td>
+							<td>
+								<div class="progress"><span class="meter" style="width: {{((time_left - event.time_from_end)/(current_speech.speech_length-event.time_from_end))*100}}%"></span></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+		<div id="final_modal" class="reveal-modal">
+		  <h2>Debate is over now.</h2>
+		  <p class="lead">Please have a look at the data, they disapears after you click on the button bellow.</p>
+		  <table>
+				<thead>
+					<tr>
+						<th width="400">Speaker</th>
+						<th width="400">Maximal Time</th>
+						<th width="400">Speech time</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="speech in speeches">
+						<td>
+							{{speech.speaker_full}}
+						</td>
+						<td>
+							{{speech.speech_length/60}}m
+						</td>
+						<td>
+							{{speech.real_length_m}}m {{speech.real_length_s}}s
+						</td>
+					</tr>
+				</tbody>
+			</table>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+		<a ng-click="CloseFinalModal();" class="large button expand">New debate</a>
+		<a ng-click="CloseFinalModal();" class="close-reveal-modal">&#215;</a>
+		</div>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+		<script>
+		document.write('<script src=' +
+			('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+			'.js><\/script>')
+		</script>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
+		<script src="js/foundation.min.js"></script>
+		<script src="js/foundation/foundation.reveal.js"></script>
 
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/Visgean">Visgean</a> can be found on <a href="https://github.com/Visgean/debatetime">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
+		<script src="js/angular.min.js"></script>
+		<script src="js/controller.js"></script>
 
-    </div>
-
-    
-  </body>
+		<script>
+		$(document).foundation();
+		</script>
+	</body>
 </html>
