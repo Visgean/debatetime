@@ -67,60 +67,87 @@
 							<td>
 								<span ng-show="$index<current_index">{{speech.real_length_m}}m {{speech.real_length_s}}s</span>
 							</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
-					<div class="large-4 large-4 columns" style='text-align: center;'>
-						<h3>{{current_speech.speaker}}</h3>
-						<h1 id='timeholder'>{{time_left_m }}:{{time_left_s|digits }}</h1>
-						<div class="progress success"><span class="meter" style="width: {{progress}}%"></span></div>
-						<a ng-click="Pause();" class="large button expand" ng-class="{true:'alert', false:'success'}[running]"><span ng-show="running">Pause</span><span ng-hide="running">Start</span></a><br>
-						<a ng-click="NextSpeaker();" class="large button expand">Next Speaker</a>
-					</div>
-
-
-				<div class="large-3 columns">
-					<table>
-						<thead>
-							<tr>
-								<th>Event</th>
-								<th>time</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="event in current_speech.events">
-								<td>
-									<span >{{event.name}}</span>
-								</td>
-								<td>
-									{{(time_left - event.time_from_end)|digits}}
-								</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-
-
+			<div class="large-4 large-4 columns" style='text-align: center;'>
+				<h3>{{current_speech.speaker_full}}</h3>
+				<h1 id='timeholder' style='font-size:66px;'>{{time_left_m }}:{{time_left_s|digits }}</h1>
+				<div class="progress success"><span class="meter" style="width: {{progress}}%"></span></div>
+				<a ng-click="Pause();" class="large button expand" ng-class="{true:'alert', false:'success'}[running]"><span ng-show="running">Pause</span><span ng-hide="running">Continue</span></a><br>
+				<a ng-click="NextSpeaker();" class="large button expand">Next Speaker</a>
 			</div>
 
 
+			<div class="large-3 columns">
+				<table>
+					<thead>
+						<tr>
+							<th>Event</th>
+							<th width="400">time</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="event in current_speech.events" ng-show="(time_left - event.time_from_end)>0">
+							<td>
+								<span >{{event.name}}</span>
+							</td>
+							<td>
+								<div class="progress"><span class="meter" style="width: {{((time_left - event.time_from_end)/(current_speech.speech_length-event.time_from_end))*100}}%"></span></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+		<div id="final_modal" class="reveal-modal">
+		  <h2>Debate is over now.</h2>
+		  <p class="lead">Please have a look at the data, the data disapears after you click on the button bellow.</p>
+		  <table>
+				<thead>
+					<tr>
+						<th>Speaker</th>
+						<th>Time</th>
+						<th>Length</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="speech in speeches">
+						<td>
+							{{speech.speaker_full}}
+						</td>
+						<td>
+							{{speech.speech_length/60}}m
+						</td>
+						<td>
+							{{speech.real_length_m}}m {{speech.real_length_s}}s
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		  <a class="close-reveal-modal">&#215;</a>
+		</div>
 
 
 
-			<script>
-			document.write('<script src=' +
-				('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
-				'.js><\/script>')
-			</script>
+		<script>
+		document.write('<script src=' +
+			('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+			'.js><\/script>')
+		</script>
 
-			<script src="js/foundation.min.js"></script>
-			<script src="js/angular.min.js"></script>
-			<script src="js/controller.js"></script>
+		<script src="js/foundation.min.js"></script>
+		<script src="js/foundation/foundation.reveal.js"></script>
 
-			<script>
-			$(document).foundation();
-			</script>
-		</body>
-		</html>
+		<script src="js/angular.min.js"></script>
+		<script src="js/controller.js"></script>
+
+		<script>
+		$(document).foundation();
+		</script>
+	</body>
+</html>
