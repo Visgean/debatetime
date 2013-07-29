@@ -14,7 +14,7 @@
 	<script src="js/vendor/custom.modernizr.js"></script>
 
 </head>
-<body ng-controller="TimeCtrl">
+<body ng-controller="TimeCtrl" style="background-color: {{bg_color}};">
 	<nav class="top-bar">
 		<ul class="title-area">
 			<!-- Title Area -->
@@ -34,8 +34,14 @@
 				<li class="hide-for-small"><a href="https://twitter.com/HeartofEuropeDT" target='_tab'>twitter</a></li>
 			</ul>
 			<ul class="right">
-				<li><a ng-click="go_pink();">Go Pink</a></li>
-
+				<li class="has-dropdown"><a href="#">Barvicky</a>
+			      	<ul class="dropdown">
+			      		<li><a ng-click="go_pink('pink')">Pink</a></li>
+	      				<li><a ng-click="go_pink('brown')">Brown</a></li>
+	      				<li><a ng-click="go_pink('black')">Black</a></li>
+	      				<li><a ng-click="go_pink('white')">White</a></li>
+	      			</ul>
+	      		</li>
 				<li class="divider hide-for-small"></li>
 				<li><a href="https://github.com/Visgean/debatetime" target='_tab'>Source @ github</a></li>
 				<li class="divider hide-for-small"></li>
@@ -86,7 +92,7 @@
 					<thead>
 						<tr>
 							<th>Event</th>
-							<th width="400">time</th>
+							<th width="800"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -106,7 +112,7 @@
 
 		<div id="final_modal" class="reveal-modal">
 		  <h2>Debate is over now.</h2>
-		  <p class="lead">Please have a look at the data, the data disapears after you click on the button bellow.</p>
+		  <p class="lead">Please have a look at the data, they disapears after you click on the button bellow.</p>
 		  <table>
 				<thead>
 					<tr>

@@ -8,9 +8,6 @@ filter('digits', function() {
 });
 
 function TimeCtrl($scope) {
-	$scope.current_index = 0; // at what speech is it now?
-	$scope.pink_active = false;
-	$scope.Math = window.Math;
 	$scope.speeches = [
 	{
 		'speaker': '1st Prop',
@@ -130,14 +127,12 @@ function TimeCtrl($scope) {
 		];
 
 
-	$scope.go_pink = function () { //this cannot use angular as controller is activated after body tag
-		if ($scope.pink_active) {
-			$('body').css({ "background-color": ''});
-		}
-		else {
-			$('body').css({ "background-color": 'pink'});
-		};
-		$scope.pink_active = !$scope.pink_active;
+	$scope.current_index = 0; // at what speech is it now?
+	$scope.bg_color = ''
+	$scope.Math = window.Math;
+
+	$scope.go_pink = function (color) { 
+		$scope.bg_color = color;
 		
 	};
 
