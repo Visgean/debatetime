@@ -43,6 +43,8 @@
 	      			</ul>
 	      		</li>
 				<li class="divider hide-for-small"></li>
+				<li class="hide-for-small"><a href="https://twitter.com/HeartofEuropeDT" target='_tab'>twitter</a></li>
+
 				<li><a href="https://github.com/Visgean/debatetime" target='_tab'>Source @ github</a></li>
 				<li class="divider hide-for-small"></li>
 				<li><a href="http://www.sphaera.cz/" target='_tab'>Created by Sphaera</a></li>
@@ -96,12 +98,12 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="event in current_speech.events" ng-show="(time_left - event.time_from_end)>0">
+						<tr ng-repeat="event in GetCurrentEvents();">
 							<td>
 								<span >{{event.name}}</span>
 							</td>
 							<td>
-								<div class="progress"><span class="meter" style="width: {{((time_left - event.time_from_end)/(current_speech.speech_length-event.time_from_end))*100}}%"></span></div>
+								<div class="progress"><span class="meter" style="width: {{GetProgressForEvent(event);}}%"></span></div>
 							</td>
 						</tr>
 					</tbody>

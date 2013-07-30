@@ -16,12 +16,14 @@ function TimeCtrl($scope) {
 			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
 			'events' :[
 			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_end': 7*60, // when this event happends after start?
+					'name':'No PoT', // this will be used as subtitle
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
 				},
 				{
-					'name':'Points forbidden', // this will be used as subtitle
+					'name':'PoT allowed', // this will be used as subtitle
 					'time_from_end': 60, // when this event happends after start?
+					'duration': 4*60, // how long is it going to last?
 				}
 				]
 			},
@@ -143,6 +145,8 @@ function TimeCtrl($scope) {
 		$scope.time_left = $scope.current_speech.speech_length;
 		$scope.time_left_m = Math.floor($scope.time_left/60);
 		$scope.time_left_s = Math.floor($scope.time_left%60);
+		$scope.time_done = 0;
+
 
 		$scope.progress = 100; //seconds
 	};
@@ -167,6 +171,8 @@ function TimeCtrl($scope) {
 			$scope.time_left_m = Math.floor(diff/60);
 			$scope.time_left_s = Math.floor(diff%60);
 
+			$scope.time_done = Math.floor($scope.current_speech.speech_length - $scope.time_left)+1;
+
 			$scope.$apply();
 		};
 	};
@@ -176,7 +182,7 @@ function TimeCtrl($scope) {
 			var now = new Date().getTime()/1000;
 			$scope.end_timestamp = now + $scope.time_left;
 			$scope.running = true;
-			$scope.timer = setInterval($scope.time_updater, 500);
+			$scope.timer = setInterval($scope.time_updater, 100);
 		}
 		else {
 			clearInterval($scope.timer);
@@ -185,7 +191,7 @@ function TimeCtrl($scope) {
 	};
 
 	$scope.NextSpeaker = function () {
-		$scope.current_speech.real_length = Math.floor($scope.current_speech.speech_length - $scope.time_left);
+		$scope.current_speech.real_length = $scope.time_done;
 		$scope.current_speech.real_length_m = Math.floor($scope.current_speech.real_length/60);
 		$scope.current_speech.real_length_s = Math.floor($scope.current_speech.real_length%60);
 		
@@ -195,6 +201,7 @@ function TimeCtrl($scope) {
 		}
 		else {
 			$('#final_modal').foundation('reveal', 'open');
+
 		};
 
 	};
@@ -203,6 +210,26 @@ function TimeCtrl($scope) {
 		$('#final_modal').foundation('reveal', 'close');
 		$scope.current_index = 0;
 		$scope.prepare_speaker();
+	};
+
+
+	$scope.GetCurrentEvents = function () {
+		var current_events = [];	
+
+		angular.forEach($scope.current_speech.events, function(debate_event){
+			if ($scope.time_done > debate_event.start_time & $scope.time_done < (debate_event.start_time + debate_event.duration)) {
+				this.push(debate_event);
+			};
+		}, current_events);
+
+		return (current_events);
+	};
+
+	$scope.GetProgressForEvent = function (debate_event) {
+		var event_done =  $scope.time_done - debate_event.start_time;
+		var percentage = 100-(event_done / debate_event.duration)*100;
+
+		return (percentage);
 	};
 
 
