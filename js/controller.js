@@ -13,17 +13,16 @@ function TimeCtrl($scope) {
 		'speaker': '1st Prop',
 		'speaker_full': '1st Proposition speaker',
 		'speech_length': 8*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events' :[
+		'events' :[
 			{
-					'name':'No PoT', // this will be used as subtitle
+					'name':'Points forbidden', // this will be used as subtitle
 					'start_time': 0, // when this event happens before end?
 					'duration': 60, // how long is it going to last?
 				},
 				{
-					'name':'PoT allowed', // this will be used as subtitle
-					'time_from_end': 60, // when this event happends after start?
-					'duration': 4*60, // how long is it going to last?
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 6*60, // how long is it going to last?
 				}
 				]
 			},
@@ -33,14 +32,16 @@ function TimeCtrl($scope) {
 
 				'speech_length': 8*60,
 			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
+			'events' :[
 			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_end': 60, // when this event happends after start?
+					'name':'Points forbidden', // this will be used as subtitle
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
 				},
 				{
-					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_end': 7*60, // when this event happends after start?
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 6*60, // how long is it going to last?
 				}
 				]
 			},
@@ -48,15 +49,16 @@ function TimeCtrl($scope) {
 				'speaker': '2nd Prop',
 				'speaker_full': '2nd Proposition speaker',
 				'speech_length': 8*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_end': 60, // when this event happends after start?
-				},
+				'events' :[
 				{
 					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_end': 7*60, // when this event happends after start?
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 6*60, // how long is it going to last?
 				}
 				]
 			},
@@ -65,15 +67,16 @@ function TimeCtrl($scope) {
 				'speaker_full': '2nd Opposition speaker',
 
 				'speech_length': 8*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_end': 60, // when this event happends after start?
-				},
+				'events' :[
 				{
 					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_end': 7*60, // when this event happends after start?
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 6*60, // how long is it going to last?
 				}
 				]
 			},
@@ -81,15 +84,16 @@ function TimeCtrl($scope) {
 				'speaker': '3rd Prop',
 				'speaker_full': '3rd Proposition speaker',
 				'speech_length': 8*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_end': 60, // when this event happends after start?
-				},
+				'events' :[
 				{
 					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_end': 7*60, // when this event happends after start?
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 6*60, // how long is it going to last?
 				}
 				]
 			},
@@ -97,15 +101,16 @@ function TimeCtrl($scope) {
 				'speaker': '3rd Opp',
 				'speaker_full': '3rd Opposition speaker',
 				'speech_length': 8*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			{
-					'name':'Points allowed', // this will be used as subtitle
-					'time_from_end': 60, // when this event happends after start?
-				},
+				'events' :[
 				{
 					'name':'Points forbidden', // this will be used as subtitle
-					'time_from_end': 7*60, // when this event happends after start?
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 6*60, // how long is it going to last?
 				}
 				]
 			},
@@ -113,25 +118,33 @@ function TimeCtrl($scope) {
 				'speaker': 'Reply Prop',
 				'speaker_full': 'Proposition Reply speaker',
 				'speech_length': 5*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			]
-		},
-		{
-			'speaker': 'Reply Opp',
-			'speaker_full': 'Opposition Reply speaker',
+				'events': [
+				]
+			},
+			{
+				'speaker': 'Reply Opp',
+				'speaker_full': 'Opposition Reply speaker',
 
-			'speech_length': 5*60,
-			'offset' : 30, //how much time does the speaker have after the 'end' of the debate before MUTE
-			'events': [
-			]
-		},
-		];
+				'speech_length': 5*60,
+				'events': [
+				]
+			},
+			];
 
 
 	$scope.current_index = 0; // at what speech is it now?
 	$scope.bg_color = ''
 	$scope.Math = window.Math;
+
+
+	$scope.stopwatch_running = false;
+	$scope.stopwatch_time_done = 0;
+	$scope.stopwatch_time_done_m = 0;
+	$scope.stopwatch_time_done_s = 0;
+	$scope.stopwatch_time_done_before_pause = 0;
+
+	$scope.stopwatch_times = [];
+
 
 	$scope.go_pink = function (color) { 
 		$scope.bg_color = color;
@@ -150,6 +163,8 @@ function TimeCtrl($scope) {
 
 		$scope.progress = 100; //seconds
 	};
+
+	$scope.prepare_speaker(); //init values
 
 
 	$scope.time_updater = function () {
@@ -191,6 +206,8 @@ function TimeCtrl($scope) {
 	};
 
 	$scope.NextSpeaker = function () {
+		clearInterval($scope.timer);
+
 		$scope.current_speech.real_length = $scope.time_done;
 		$scope.current_speech.real_length_m = Math.floor($scope.current_speech.real_length/60);
 		$scope.current_speech.real_length_s = Math.floor($scope.current_speech.real_length%60);
@@ -233,6 +250,47 @@ function TimeCtrl($scope) {
 	};
 
 
-	$scope.prepare_speaker(); //init values
+	$scope.Stopwatch = function () {
+		$('#stopwatch').foundation('reveal', 'open');
+	};
+
+	$scope.stopwatch_time_updater = function () {
+		if ($scope.stopwatch_running) {
+			var now = new Date().getTime()/1000;
+			$scope.stopwatch_time_done = (now - $scope.stopwatch_start) + $scope.stopwatch_time_done_before_pause;
+			$scope.stopwatch_time_done_m = Math.floor($scope.stopwatch_time_done/60);
+			$scope.stopwatch_time_done_s = Math.floor($scope.stopwatch_time_done%60);
+
+			$scope.$apply();
+		};
+	};
+
+	$scope.StopwatchPause = function () {
+			if (!$scope.stopwatch_running) {
+				var now = new Date().getTime()/1000;
+				$scope.stopwatch_start = now;
+				$scope.stopwatch_running = true;
+
+				$scope.stopwatch_timer = setInterval($scope.stopwatch_time_updater, 100);
+			}
+			else {
+				clearInterval($scope.stopwatch_timer);
+				$scope.stopwatch_running = false;
+				$scope.stopwatch_time_done_before_pause = $scope.stopwatch_time_done;
+			};
+		};
+
+	$scope.StopwatchNewTime = function () {
+			$scope.stopwatch_times.push($scope.stopwatch_time_done);
+			clearInterval($scope.stopwatch_timer);
+			$scope.stopwatch_running = false;
+
+			$scope.stopwatch_time_done_before_pause = 0	
+			$scope.stopwatch_time_done = 0;
+			$scope.stopwatch_time_done_m = 0;
+			$scope.stopwatch_time_done_s = 0;
+	
+		};
+		
 
 }

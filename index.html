@@ -35,13 +35,15 @@
 			</ul>
 			<ul class="right">
 				<li class="has-dropdown"><a href="#">Barvicky</a>
-			      	<ul class="dropdown">
-			      		<li><a ng-click="go_pink('pink')">Pink</a></li>
-	      				<li><a ng-click="go_pink('brown')">Brown</a></li>
-	      				<li><a ng-click="go_pink('black')">Black</a></li>
-	      				<li><a ng-click="go_pink('white')">White</a></li>
-	      			</ul>
-	      		</li>
+					<ul class="dropdown">
+						<li><a ng-click="go_pink('pink')">Pink</a></li>
+						<li><a ng-click="go_pink('brown')">Brown</a></li>
+						<li><a ng-click="go_pink('black')">Black</a></li>
+						<li><a ng-click="go_pink('white')">White</a></li>
+					</ul>
+				</li>
+				<li><a ng-click="Stopwatch();">StopWatch</a></li>
+
 				<li class="divider hide-for-small"></li>
 				<li class="hide-for-small"><a href="https://twitter.com/HeartofEuropeDT" target='_tab'>twitter</a></li>
 
@@ -113,9 +115,9 @@
 
 
 		<div id="final_modal" class="reveal-modal">
-		  <h2>Debate is over now.</h2>
-		  <p class="lead">Please have a look at the data, they disapears after you click on the button bellow.</p>
-		  <table>
+			<h2>Debate is over now.</h2>
+			<p class="lead">Please have a look at the data, they disapears after you click on the button bellow.</p>
+			<table>
 				<thead>
 					<tr>
 						<th width="400">Speaker</th>
@@ -138,10 +140,43 @@
 				</tbody>
 			</table>
 
-		<a ng-click="CloseFinalModal();" class="large button expand">New debate</a>
-		<a ng-click="CloseFinalModal();" class="close-reveal-modal">&#215;</a>
+			<a ng-click="CloseFinalModal();" class="large button expand">New debate</a>
+			<a ng-click="CloseFinalModal();" class="close-reveal-modal">&#215;</a>
 		</div>
 
+		<div id="stopwatch" class="reveal-modal">
+			<div class="large-4 large-centered columns" style='text-align: center;'>
+				<h1 style='font-size:66px;'>{{stopwatch_time_done_m }}:{{stopwatch_time_done_s|digits }}</h1>
+				<a ng-click="StopwatchPause();" class="large button expand" ng-class="{true:'alert', false:'success'}[stopwatch_running]"><span ng-show="stopwatch_running">Pause</span><span ng-hide="stopwatch_running">Continue</span></a><br>
+				<a ng-click="StopwatchNewTime();" class="large button expand">New time</a>
+			</div>
+
+			<div ng-show="stopwatch_times.length > 0">
+				<table>
+					<thead>
+						<tr>
+							<th width="600">#</th>
+							<th width="600">time</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr ng-repeat="stopwatch_time in stopwatch_times">
+							<td width="400"> 
+								{{$index+1}}
+							</td>
+							<td width="400">
+								{{Math.floor(stopwatch_time/60)}}:{{Math.floor(stopwatch_time%60)|digits}}
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+			<a ng-click="" class="close-reveal-modal">&#215;</a>
+		</div>
 
 
 		<script>
@@ -160,4 +195,4 @@
 		$(document).foundation();
 		</script>
 	</body>
-</html>
+	</html>
