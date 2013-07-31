@@ -117,7 +117,7 @@ function TimeCtrl($scope) {
 			{
 				'speaker': 'Reply Prop',
 				'speaker_full': 'Proposition Reply speaker',
-				'speech_length': 5*60,
+				'speech_length': 4*60,
 				'events': [
 				]
 			},
@@ -125,7 +125,7 @@ function TimeCtrl($scope) {
 				'speaker': 'Reply Opp',
 				'speaker_full': 'Opposition Reply speaker',
 
-				'speech_length': 5*60,
+				'speech_length': 4*60,
 				'events': [
 				]
 			},
