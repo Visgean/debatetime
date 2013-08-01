@@ -271,9 +271,7 @@ function TimeCtrl($scope) {
 			},
 			];
 
-
-
-			$scope.speeches = $scope.wstyle;
+	$scope.speeches = $scope.wstyle;
 	$scope.current_index = 0; // at what speech is it now?
 	$scope.bg_color = ''
 	$scope.Math = window.Math;

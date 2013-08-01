@@ -34,6 +34,13 @@
 				<li class="hide-for-small"><a href="https://twitter.com/HeartofEuropeDT" target='_tab'>twitter</a></li>
 			</ul>
 			<ul class="right">
+				<li class="has-dropdown hide-for-small"><a href="#">Format</a>
+					<ul class="dropdown">
+						<li><a ng-click="ChangeStyle('bp')">British Parliamentary</a></li>
+						<li><a ng-click="ChangeStyle('wordstyle')">World Style debate</a></li>
+					</ul>
+				</li>
+				<li class="divider hide-for-small"></li>
 				<li class="has-dropdown"><a href="#">Barvicky</a>
 					<ul class="dropdown">
 						<li><a ng-click="go_pink('pink')">Pink</a></li>
@@ -42,6 +49,7 @@
 						<li><a ng-click="go_pink('white')">White</a></li>
 					</ul>
 				</li>
+
 				<li class="divider hide-for-small"></li>
 				<li><a ng-click="Stopwatch();">StopWatch</a></li>
 
