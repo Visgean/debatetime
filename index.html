@@ -22,7 +22,7 @@
 				<h1><a href="#">HoE timekeeper</a></h1>
 			</li>
 			<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-			<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 		</ul>
 
 		<section class="top-bar-section">
@@ -48,10 +48,14 @@
 				<li class="divider hide-for-small"></li>
 				<li><a href="https://build.phonegap.com/apps/488424/builds" target='_tab'>Mobile app</a></li>
 				<li class="divider hide-for-small"></li>
+				<li class="has-dropdown"><a href="#" target='_tab'>Created by Sphaera</a>
+					<ul class="dropdown">
+						<li><a ng-click="http://sphaera.cz">Sphaera website</a></li>
+						<li><a href="https://github.com/Visgean/debatetime" target='_tab'>Source @ github</a></li>
+					</ul>
 
-				<li class="hide-for-small"><a href="https://github.com/Visgean/debatetime" target='_tab'>Source @ github</a></li>
-				<li class="divider hide-for-small"></li>
-				<li><a href="http://www.sphaera.cz/" target='_tab'>Created by Sphaera</a></li>
+
+				</li>
 			</ul>
 		</section></nav>
 
@@ -82,8 +86,9 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
+				<a data-reveal-id='format_screen' class="large button">Change format</a>
 
+			</div>
 			<div class="large-4 large-4 columns" style='text-align: center;'>
 				<h3>{{current_speech.speaker_full}}</h3>
 				<h1 id='timeholder' style='font-size:66px;'>{{time_left_m }}:{{time_left_s|digits }}</h1>
@@ -177,8 +182,17 @@
 			</div>
 
 
+			<a class="close-reveal-modal">&#215;</a>
+		</div>
+
+
+		<div id="format_screen" class="reveal-modal small">
+			<h1>Debate with style</h1>
+			<a ng-click="ChangeStyle('bp');" class="large button expand">British Parliamentary</a>
+			<a ng-click="ChangeStyle('wordstyle');" class="large button expand">World Style debate</a>
 			<a ng-click="" class="close-reveal-modal">&#215;</a>
 		</div>
+
 
 
 		<script>

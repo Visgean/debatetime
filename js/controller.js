@@ -8,13 +8,13 @@ filter('digits', function() {
 });
 
 function TimeCtrl($scope) {
-	$scope.speeches = [
+	$scope.wstyle = [
 	{
 		'speaker': '1st Prop',
 		'speaker_full': '1st Proposition speaker',
 		'speech_length': 8*60,
 		'events' :[
-			{
+		{
 					'name':'Points forbidden', // this will be used as subtitle
 					'start_time': 0, // when this event happens before end?
 					'duration': 60, // how long is it going to last?
@@ -132,6 +132,148 @@ function TimeCtrl($scope) {
 			];
 
 
+		$scope.bp_speeches = [
+			{
+				'speaker': '1st Opening Gov',
+				'speaker_full': '1st Opening government speaker',
+				'speech_length': 7*60,
+				'events' :[
+				{
+					'name':'Points forbidden', // this will be used as subtitle
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 5*60, // how long is it going to last?
+				}
+				]
+			},
+			{
+				'speaker': '1st Opening Opp.',
+				'speaker_full': '1st Opening opposition speaker',
+				'speech_length': 7*60,
+				'events' :[
+				{
+					'name':'Points forbidden', // this will be used as subtitle
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 5*60, // how long is it going to last?
+				}
+				]
+			},
+			{
+				'speaker': '2nd Opening Gov',
+				'speaker_full': '2nd Opening government speaker',
+				'speech_length': 7*60,
+				'events' :[
+				{
+					'name':'Points forbidden', // this will be used as subtitle
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 5*60, // how long is it going to last?
+				}
+				]
+			},
+			{
+				'speaker': '2nd Opening Opp.',
+				'speaker_full': '2nd Opening opposition speaker',
+				'speech_length': 7*60,
+				'events' :[
+				{
+					'name':'Points forbidden', // this will be used as subtitle
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 5*60, // how long is it going to last?
+				}
+				]
+			},
+			{
+				'speaker': '1st Closing Gov',
+				'speaker_full': '1st Closing government speaker',
+				'speech_length': 7*60,
+				'events' :[
+				{
+					'name':'Points forbidden', // this will be used as subtitle
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 5*60, // how long is it going to last?
+				}
+				]
+			},
+			{
+				'speaker': '1st Closing Opp.',
+				'speaker_full': '1st Closing opposition speaker',
+				'speech_length': 7*60,
+				'events' :[
+				{
+					'name':'Points forbidden', // this will be used as subtitle
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 5*60, // how long is it going to last?
+				}
+				]
+			},
+			{
+				'speaker': '2nd Closing Gov',
+				'speaker_full': '2nd Closing government speaker',
+				'speech_length': 7*60,
+				'events' :[
+				{
+					'name':'Points forbidden', // this will be used as subtitle
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 5*60, // how long is it going to last?
+				}
+				]
+			},
+			{
+				'speaker': '2nd Closing Opp.',
+				'speaker_full': '2nd Closing opposition speaker',
+				'speech_length': 7*60,
+				'events' :[
+				{
+					'name':'Points forbidden', // this will be used as subtitle
+					'start_time': 0, // when this event happens before end?
+					'duration': 60, // how long is it going to last?
+				},
+				{
+					'name':'Points allowed', // this will be used as subtitle
+					'start_time': 60, // when this event happends after start?
+					'duration': 5*60, // how long is it going to last?
+				}
+				]
+			},
+			];
+
+
+
+			$scope.speeches = $scope.wstyle;
 	$scope.current_index = 0; // at what speech is it now?
 	$scope.bg_color = ''
 	$scope.Math = window.Math;
@@ -223,6 +365,24 @@ function TimeCtrl($scope) {
 
 	};
 
+
+	$scope.ChangeStyle = function (format) {
+		if (format==='wordstyle') {
+			$scope.speeches = $scope.wstyle;
+		};
+
+		if (format==='bp') {
+			$scope.speeches = $scope.bp_speeches;
+		};
+
+		$('#format_screen').foundation('reveal', 'close');
+		$scope.current_index = 0;
+		$scope.prepare_speaker();
+
+	};
+
+
+
 	$scope.CloseFinalModal = function () {
 		$('#final_modal').foundation('reveal', 'close');
 		$scope.current_index = 0;
@@ -266,31 +426,31 @@ function TimeCtrl($scope) {
 	};
 
 	$scope.StopwatchPause = function () {
-			if (!$scope.stopwatch_running) {
-				var now = new Date().getTime()/1000;
-				$scope.stopwatch_start = now;
-				$scope.stopwatch_running = true;
+		if (!$scope.stopwatch_running) {
+			var now = new Date().getTime()/1000;
+			$scope.stopwatch_start = now;
+			$scope.stopwatch_running = true;
 
-				$scope.stopwatch_timer = setInterval($scope.stopwatch_time_updater, 100);
-			}
-			else {
-				clearInterval($scope.stopwatch_timer);
-				$scope.stopwatch_running = false;
-				$scope.stopwatch_time_done_before_pause = $scope.stopwatch_time_done;
-			};
-		};
-
-	$scope.StopwatchNewTime = function () {
-			$scope.stopwatch_times.push($scope.stopwatch_time_done);
+			$scope.stopwatch_timer = setInterval($scope.stopwatch_time_updater, 100);
+		}
+		else {
 			clearInterval($scope.stopwatch_timer);
 			$scope.stopwatch_running = false;
-
-			$scope.stopwatch_time_done_before_pause = 0	
-			$scope.stopwatch_time_done = 0;
-			$scope.stopwatch_time_done_m = 0;
-			$scope.stopwatch_time_done_s = 0;
-	
+			$scope.stopwatch_time_done_before_pause = $scope.stopwatch_time_done;
 		};
-		
+	};
+
+	$scope.StopwatchNewTime = function () {
+		$scope.stopwatch_times.push($scope.stopwatch_time_done);
+		clearInterval($scope.stopwatch_timer);
+		$scope.stopwatch_running = false;
+
+		$scope.stopwatch_time_done_before_pause = 0	
+		$scope.stopwatch_time_done = 0;
+		$scope.stopwatch_time_done_m = 0;
+		$scope.stopwatch_time_done_s = 0;
+
+	};
+
 
 }
