@@ -115,15 +115,15 @@ function TimeCtrl($scope) {
 				]
 			},
 			{
-				'speaker': 'Reply Prop',
-				'speaker_full': 'Proposition Reply speaker',
+				'speaker': 'Reply Opp',
+				'speaker_full': 'Opposition Reply speaker',
 				'speech_length': 4*60,
 				'events': [
 				]
 			},
 			{
-				'speaker': 'Reply Opp',
-				'speaker_full': 'Opposition Reply speaker',
+				'speaker': 'Reply Prop',
+				'speaker_full': 'Proposition Reply speaker',
 
 				'speech_length': 4*60,
 				'events': [
