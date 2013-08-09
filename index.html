@@ -101,7 +101,7 @@
 				<h1 id='timeholder' style='font-size:66px;'>{{time_left_m }}:{{time_left_s|digits }}</h1>
 				<div class="progress success"><span class="meter" style="width: {{progress}}%"></span></div>
 				<a ng-click="Pause();" class="large button expand" ng-class="{true:'alert', false:'success'}[running]"><span ng-show="running">Pause</span><span ng-hide="running">Continue</span></a><br>
-				<a ng-click="NextSpeaker();" class="large button expand">Next Speaker</a>
+				<a ng-click="NextSpeaker();" ng-hide="running" class="large button expand">Next Speaker</a>
 			</div>
 
 
@@ -109,7 +109,7 @@
 				<table>
 					<thead>
 						<tr>
-							<th>Event</th>
+							<th>Points</th>
 							<th width="800"></th>
 						</tr>
 					</thead>
